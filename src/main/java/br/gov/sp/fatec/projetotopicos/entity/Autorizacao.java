@@ -1,8 +1,5 @@
 package br.gov.sp.fatec.projetotopicos.entity;
 
-import java.util.Set;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,11 +10,15 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.Set;
+
+import javax.persistence.Column;
+
 @Entity
 @Table(name = "aut_autorizacao")
 public class Autorizacao {
 
-    public Autorizacao(String nome){
+    public Autorizacao(String nome) {
         this.nome = nome;
     }
 
@@ -50,4 +51,15 @@ public class Autorizacao {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public Set<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(Set<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    
+    
 }

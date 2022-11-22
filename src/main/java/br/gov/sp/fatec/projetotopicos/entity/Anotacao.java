@@ -22,7 +22,7 @@ public class Anotacao {
     @Column(name = "ant_texto")
     private String texto;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usr_id")
     private Usuario usuario;
 

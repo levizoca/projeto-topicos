@@ -17,4 +17,6 @@ public interface SegurancaService extends UserDetailsService {
 
     public Usuario buscarPorId(Long id);
 
+    public List<Usuario> buscarPorNome(String nome);
+
 }

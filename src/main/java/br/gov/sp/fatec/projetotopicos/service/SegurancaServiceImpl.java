@@ -75,8 +75,17 @@ public class SegurancaServiceImpl implements SegurancaService {
     }
 
     @Override
+    @PreAuthorize("isAuthenticated()")
+    public List<Usuario> buscarPorNome(String nome) {
+        if(nome == null || nome.isBlank()) {
+            return todosUsuarios();
+        }
+        return usuarioRepo.findByNomeContains(nome);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepo.buscarPorNome(username);
+        Usuario usuario = usuarioRepo.findByNome(username);
         if (usuario == null) {
           throw new UsernameNotFoundException("Usuário " + username + " não encontrado!");
         }

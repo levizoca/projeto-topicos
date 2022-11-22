@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.gov.sp.fatec.projetotopicos.entity.Usuario;
 import br.gov.sp.fatec.projetotopicos.service.SegurancaService;
@@ -18,7 +18,7 @@ import br.gov.sp.fatec.projetotopicos.service.SegurancaService;
 @RequestMapping(value = "/usuario")
 @CrossOrigin
 public class UsuarioController {
-    
+
     @Autowired
     private SegurancaService segurancaService;
 
@@ -27,14 +27,19 @@ public class UsuarioController {
         return segurancaService.todosUsuarios();
     }
 
-    @GetMapping(value= "/{id}")
+    @GetMapping(value = "/{id}")
     public Usuario buscarPorId(@PathVariable("id") Long id) {
-        return segurancaService.buscarPorId(id);
+         return segurancaService.buscarPorId(id);
     }
 
+    @GetMapping(value = "/nome/{nome}")
+    public List<Usuario> buscarPorNome(@PathVariable("nome") String nome) {
+         return segurancaService.buscarPorNome(nome);
+    }
 
-    @PostMapping(value = "/cadastrar")
+    @PostMapping
     public Usuario novoUsuario(@RequestBody Usuario usuario) {
         return segurancaService.novoUsuario(usuario);
     }
+
 }
